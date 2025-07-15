@@ -1,0 +1,100 @@
+body{
+    display: block;
+    justify-content: normal;
+    align-items: normal;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+    background-size: 10px;
+    background-repeat: repeat;
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Logo{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.Logo1{
+    align-self: stretch;
+    width: 90%;
+    height: 100%;
+}
+
+.Icon1{
+    align-self: stretch;
+    width: 100%;
+    height: 100%;
+}
+
+.KeyInputDiv{
+    display: flex;
+}
+
+.PostoInputDiv{
+    display: flex;
+}
+
+.KeyInput{
+    height: 20px;
+}
+
+.PostoInput{
+    height: 20px;
+}
+
+.InputArea{
+    width: 100%;
+    display:grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.InputSectionDiv{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.Icon{
+    margin-right: 20px;
+}
+
+.Icon1{
+    height: 200px;
+}
+
+#ConfirmButtonDiv{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.ConfirmButton{
+    cursor: pointer;
+    background-color: #2e86b1;
+    color: #2e86b1;
+    width: 300px;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#ConfirmButtonText{
+    text-align: center;
+    align-self: baseline;
+    font-weight: bold;
+    font-size:large;
+}
+
+#ConfirmButtonImage{
+    float: right;
+    width: auto;
+    height: 100%;
+}

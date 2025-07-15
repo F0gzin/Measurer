@@ -1,0 +1,132 @@
+    body{
+    display: block;
+    justify-content: normal;
+    align-items: normal;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+    background-size: 10px;
+    background-repeat: repeat;
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .TankItemMainDiv{
+        /*background-color: #b83737;*/
+        
+        border-color: #0000;
+        border-width: 2px;
+        border-radius: 20%;
+        border: solid 2px;
+        width: 100%;
+        height: auto;
+        align-content: center;
+        justify-content: center;
+        display:grid;
+    }
+
+    #TankItemIcon{
+        width: 80px;
+        height: 80px;
+        
+    }
+
+    #TankItemTitle{
+        color: #000000;
+    }
+
+    #TankItemTitle2{
+        color: #000000;
+    }
+    
+.TanksDivScrolling{
+    overflow-y: scroll;
+     overflow-x: hidden;
+     width: 100%;
+    height: 10%;
+}
+
+#TankItemOutput1{
+    cursor: not-allowed;
+}
+
+#ConfirmButtonDiv{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.ConfirmButton{
+    cursor: pointer;
+    background-color: black;
+    color: #f0f0f0;
+    width: 300px;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#ConfirmButtonText{
+    text-align: center;
+    align-self: baseline;
+    font-weight: bold;
+    font-size:large;
+}
+
+#ConfirmButtonImage{
+    float: right;
+    width: auto;
+    height: 100%;
+}
+
+.TankVizualMain{
+    background-image: linear-gradient(#ff8800,#ff5906);
+    width: 120px;
+    height: 120px;
+    border-color: #0000;
+    border-width: 2px;
+    border-radius: 100%;
+    border: solid 2px;
+    overflow: hidden;
+    display: block;
+}
+
+.TankVizualEmpty{
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+}
+
+.TankVizualTextDiv{
+    display: flex;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.TankVizualText{
+    font-weight: bold;
+    font-size:larger;
+}
+.GraphicTankItemMainDiv{
+    align-content: center;
+    justify-content: center;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.TankVizualMainFrame{
+    width: 200px;
+    height: 200px;
+    border-color: #0000;
+    border: solid 2px;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    place-items: center;
+}

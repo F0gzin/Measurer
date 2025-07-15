@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque do Posto ⛽</title>
+    <link rel="icon" href="../Icon.png">
+</head>
+
+<body>
+    <h1 class="JS_Required_Warning" id="JS_Required_Warning"><img style="width: 40px;" src="/Assets/Images/Generic/JavaScript.png">JavaScript deve estar ativado para o site funcionar.</h1>
+    <div id="InputMainDiv" class="InputMainDiv">     
+        <div id="InputMainDiv2">
+            <h1 class="MainInputTitle1" id="MainInputTitle1">Leitura de Tanques</h1>
+            <div class="TanksScrollingTitleDiv" id="TanksScrollingTitleDiv">
+                <h2 class="TanksScrollingTitle" id="TanksScrollingTitle">Tanques</h2>
+            </div>
+
+            <div class="TanksDivScrolling" id="TanksDivScrolling">
+
+                <!--Tanques aqui-->
+                
+                <div class="TankItemMainDiv" id="TankItemMainDiv" style="background-color: #f99999;">
+                    <h3 class="TankItemTitle" id="TankItemTitle">Tanque 1</h3>
+                    <img id="TankItemIcon" src="/Assets/Images/Generic/GasTankStroke2.png">
+                    <h3 class="TankItemTitle2" id="TankItemTitle2">GC</h3>
+                    <strong class="TankItemTitle2" id="TankItemTitle2">Capacidade: 30.000</strong>
+                    <p><strong class="TankItemTitle2" id="TankItemTitle2">Medição(CM):</strong><input class="TankItemInput1" id="TankItemInput1" type="number"></p>
+                    <!-- <p><strong class="TankItemTitle2" id="TankItemTitle2">Volume Atual:</strong><input class="TankItemOutput1" id="TankItemOutput1"></p> -->
+                </div>
+        
+            </div>
+            
+            <div>
+                
+            </div>
+
+            <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
+                <button id="ConfirmButton" class="ConfirmButton">
+                    <img id="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
+                </button>
+            </div>
+
+        </div>  
+    </div>
+    <div id="OutputMainDiv" class="OutputMainDiv">
+        <div class="GraphicTankItemMainDiv" id="GraphicTankItemMainDiv">
+
+            <div class="TankVizualMainFrame" id="TankVizualMainFrame">
+
+                <strong>Tanque 1</strong>
+                
+                <div class="TankVizualMain" id="TankVizualMain">
+                    <div class="TankVizualEmpty"></div>
+                    
+                </div>
+                
+                <div class="TankVizualTextDiv"> <p class="TankVizualText">...</p> </div>
+            </div>
+
+        </div>
+        <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
+            <button id="BackButton" class="ConfirmButton">
+                <img id="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/2099/2099190.png">
+            </button>
+        </div>
+    </div>
+</body>
+
+
+<link id="MainCss" rel="stylesheet" href="../Assets/Styles/pc.css">
+
+<script type="text/javascript">
+    const js_required_warning = document.getElementById("JS_Required_Warning");
+    js_required_warning.remove();
+</script>
+
+<script type="module" src="../Assets/Scripts/MainTab.js"></script>
+<script type="text/javascript" src="../Assets/Scripts/CONVERT.js"></script>
+
+</html>
