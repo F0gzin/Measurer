@@ -23,7 +23,7 @@
                 
                 <div class="TankItemMainDiv" id="TankItemMainDiv" style="background-color: #f99999;">
                     <h3 class="TankItemTitle" id="TankItemTitle">Tanque 1</h3>
-                    <img id="TankItemIcon" src="../Assets/Images/Generic/GasTankStroke2.png">
+                    <img id="TankItemIcon" src="/Assets/Images/Generic/GasTankStroke2.png">
                     <h3 class="TankItemTitle2" id="TankItemTitle2">GC</h3>
                     <strong class="TankItemTitle2" id="TankItemTitle2">Capacidade: 30.000</strong>
                     <p><strong class="TankItemTitle2" id="TankItemTitle2">Medição(CM):</strong><input class="TankItemInput1" id="TankItemInput1" type="number"></p>
@@ -38,7 +38,7 @@
 
             <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
                 <button id="ConfirmButton" class="ConfirmButton">
-                    <img id="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
+                    <img class="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
                 </button>
             </div>
 
@@ -52,11 +52,14 @@
                 <strong>Tanque 1</strong>
                 
                 <div class="TankVizualMain" id="TankVizualMain">
-                    <div class="TankVizualEmpty"></div>
-                    
+                    <div class="TankVizualEmpty">
+                    </div>
                 </div>
+                <div class="TankVizualTextDiv">
+                    <p class="TankVizualText">...</p> 
+                </div>
+                <p class="TankVizualText">Livre: ...</p> 
                 
-                <div class="TankVizualTextDiv"> <p class="TankVizualText">...</p> </div>
             </div>
 
         </div>
@@ -64,6 +67,30 @@
             <button id="BackButton" class="ConfirmButton">
                 <img id="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/2099/2099190.png">
             </button>
+        </div>
+
+        <div id="ConfirmTruckButtonDiv" class="ConfirmTruckButtonDiv">
+            <button id="ConfirmTruckButton" class="ConfirmTruckButton">
+                <img class="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/6141/6141632.png">
+            </button>
+        </div>
+    </div>
+    <div class="TruckMainDiv" id="TruckMainDiv" hidden="true">
+        <h1 class="TituloCaminhao1">Produtos</h1>
+        <img class="IconeBarril" src="../Assets/Images/Icone.svg">
+
+        <div>
+
+            <div class="DivCombustivel">
+                <h2 class="TituloCombustivel">Combustível:</h2>
+                <select class="ProductInput" id="ProductInput">
+                    <option style="background-color: #f99999;" value="gasolina">Gasolina</option>
+                    <option style="background-color: #6ac353;" value="etanol">Etanol</option>
+                    <option style="background-color: #5f5e5e;" value="disel">Disel</option>
+                </select>
+                <h2 class="TituloQuantidade">Quantidade:</h2> <input class="InputQuantidade" type="number">
+            </div>
+
         </div>
     </div>
 </body>

@@ -81,10 +81,42 @@
     height: 100%;
 }
 
+/*-------------------*/
+#ConfirmTruckButtonDiv{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.ConfirmTruckButton{
+    cursor: pointer;
+    /*background-color: black;*/
+    background: none;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    color: #f0f0f0;
+    width: 300px;
+    /*height: 40px;*/
+    height: 70px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#ConfirmTruckButtonText{
+    text-align: center;
+    align-self: baseline;
+    font-weight: bold;
+    font-size:large;
+}
+/*-------------------*/
+
 .TankVizualMain{
     background-image: linear-gradient(#ff8800,#ff5906);
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border-color: #0000;
     border-width: 2px;
     border-radius: 100%;
@@ -99,17 +131,23 @@
 }
 
 .TankVizualTextDiv{
+    position:absolute;
     display: flex;
     width: 100%;
+    height: 10px;
     align-content: center;
+    display: grid;
     justify-content: center;
     align-self: center;
+    margin-bottom: 25px;
 }
 
 .TankVizualText{
     font-weight: bold;
-    font-size:larger;
+    font-size:medium;
+    margin: 5px;
 }
+
 .GraphicTankItemMainDiv{
     align-content: center;
     justify-content: center;
@@ -120,13 +158,43 @@
 }
 
 .TankVizualMainFrame{
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     border-color: #0000;
     border: solid 2px;
 
+    display:grid;
+    align-content: center;
+    justify-content: center;
+    place-items: center;
+}
+
+.IconeBarril{
+    width: 50px;
+    height: 50px;
+    margin-left: calc(50% - 25px);
+}
+
+.TituloCaminhao1{
+    width: 100%;
+    text-align: center;
+}
+
+.DivCombustivel{
     display: grid;
     align-content: center;
     justify-content: center;
     place-items: center;
+}
+
+.ProductInput{
+    font-weight: bold;
+    font-size: large;
+    height: 50px;
+}
+
+.InputQuantidade{
+    font-weight: bold;
+    font-size: large;
+    height: 50px;
 }

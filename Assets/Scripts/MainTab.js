@@ -6,11 +6,14 @@ import { Table3 } from './Tables3.js'; // tanques 5
 import { Table4 } from './Tables4.js'; // tanques 6
 import { Table5 } from './Tables5.js'; // tanques 7 e 8
 
-let isInput = true;
+let CurrentScreen = 0; // tela atual
 const InputDiv = document.getElementById("InputMainDiv");
 const OutputDiv = document.getElementById("OutputMainDiv");
+const TruckDiv = document.getElementById("TruckMainDiv");
+
 const ConfirmButton = document.getElementById("ConfirmButton");
 const BackButton = document.getElementById("BackButton");
+const TruckButton = document.getElementById("ConfirmTruckButton");
 
 let Tanks = [
     {
@@ -71,6 +74,11 @@ let Tanks = [
     },
 ]
 
+function GetMax(TankId){
+    let Tank = Tanks[TankId];
+    return Tank["Capacidade"];
+};
+
 function Item(element,inputElement,TankId){
     const elementPreviewTemplate = document.getElementById("TankVizualMainFrame");
     const elementChildren = element.children;
@@ -80,6 +88,7 @@ function Item(element,inputElement,TankId){
     const newElement = elementPreviewTemplate.cloneNode(true);
     const childElements = newElement.children;
     const output = childElements[2].children[0];
+    const outputRemainingSpace = childElements[3];
     const emptySpaceDiv = childElements[1].children[0];
     const tankData = Tanks[TankId];
 
@@ -104,9 +113,12 @@ function Item(element,inputElement,TankId){
             let percent = Result[1];
             emptySpaceDiv.style = `height:${percent*100}%;`;
             output.innerText = String(Liters) + " LTs";
+            outputRemainingSpace.innerText = "Livre:" + String( GetMax(TankId) - Liters) + " LTs";
+            
         }else{
             emptySpaceDiv.style = `height:0%;`;
             output.innerText = String(Liters);
+            outputRemainingSpace.innerText = "" //"..."
         };
     });
 };
@@ -145,17 +157,34 @@ function setupTanks(){
 setupTanks()
 
 function updateScreen(){
-    InputDiv.hidden = !isInput;
-    OutputDiv.hidden = isInput;
+    InputDiv.hidden = true;
+    OutputDiv.hidden = true;
+    if(CurrentScreen == 0){
+        InputDiv.hidden = false;
+    }else if(CurrentScreen == 1){
+        OutputDiv.hidden = false;
+    }else{
+        TruckDiv.hidden = false;
+    };   
 };
 
 ConfirmButton.addEventListener('click',function(ev){
-    isInput = false;
+    console.log(CurrentScreen);
+    if(CurrentScreen == 0){
+        CurrentScreen = 1;
+    }else{
+        CurrentScreen = 0;
+    };
     updateScreen()
 });
 
 BackButton.addEventListener('click',function(ev){
-    isInput = true;
+    CurrentScreen = 0;
+    updateScreen()
+});
+
+TruckButton.addEventListener('click',function(ev){
+    CurrentScreen = 3;
     updateScreen()
 });
 
@@ -199,7 +228,9 @@ function CalculatePattern(N,numberType,tableId) {
     }
   }else{
     let percent = 1-(Table[n]/Tanks[tableId].Capacidade);
-    console.log(percent);
+    if(isNaN(percent)||percent==undefined){
+        percent = 0;
+    };
     return [Table[n],percent]
   }
 };

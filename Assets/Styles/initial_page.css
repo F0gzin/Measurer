@@ -44,7 +44,15 @@ body{
 }
 
 .PostoInput{
-    height: 20px;
+    height: 30px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.PostoTexto{
+    font-weight: bold;
+    font-size: large;
+    margin: 5px;
 }
 
 .InputArea{
@@ -78,10 +86,18 @@ body{
 .ConfirmButton{
     cursor: pointer;
     background-color: #2e86b1;
-    color: #2e86b1;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    padding-top: 17.5px;
     width: 300px;
-    height: 40px;
+    height: 100px;
     display: flex;
+    margin-top: 25px;
+    border-style: outset;
+    border-color: #4a95bb;
+    border-width: 8px;
     align-content: center;
     justify-content: center;
 }
@@ -93,8 +109,9 @@ body{
     font-size:large;
 }
 
-#ConfirmButtonImage{
+.ConfirmButtonImage{
     float: right;
     width: auto;
-    height: 100%;
+    height: 50px;
+    top: 30px;
 }
