@@ -15,12 +15,21 @@ const ConfirmButton = document.getElementById("ConfirmButton");
 const BackButton = document.getElementById("BackButton");
 const TruckButton = document.getElementById("ConfirmTruckButton");
 
+const TotalGasolinaTexto = document.getElementById("TotalGasolinaTexto");
+const TotalEtanolTexto = document.getElementById("TotalEtanolTexto");
+const TotalDiselTexto = document.getElementById("TotalDiselTexto");
+
+let totalGasolina = 0;
+let totalEtanol = 0;
+let totalDisel = 0;
+
 let Tanks = [
     {
         Nome:"Tanque 1",
         Modelo:"XXX-123",
         Tabela: Table1,
         Type:"GC",
+        CurrentValue:0,
         Capacidade:30000
     },
     {
@@ -28,6 +37,7 @@ let Tanks = [
         Modelo:"XXX-123",
         Tabela: Table1,
         Type:"ET",
+        CurrentValue:0,
         Capacidade:30000
     },
     {
@@ -35,6 +45,7 @@ let Tanks = [
         Modelo:"XXX-123",
         Tabela: Table2,
         Type:"ET",
+        CurrentValue:0,
         Capacidade:15000
     },
     {
@@ -42,6 +53,7 @@ let Tanks = [
         Modelo:"XXX-123",
         Tabela: Table2,
         Type:"GC",
+        CurrentValue:0,
         Capacidade:15000
     },
     {
@@ -49,6 +61,7 @@ let Tanks = [
         Modelo:"XXX-123",
         Tabela: Table3,
         Type:"DI",
+        CurrentValue:0,
         Capacidade:10000
     },
     {
@@ -56,6 +69,7 @@ let Tanks = [
         Modelo:"XXX-123",
         Tabela: Table4,
         Type:"GC",
+        CurrentValue:0,
         Capacidade:20000
     },
     {
@@ -63,6 +77,7 @@ let Tanks = [
         Modelo:"XXX-123",
         Tabela: Table5,
         Type:"ET",
+        CurrentValue:0,
         Capacidade:15000
     },
     {
@@ -70,6 +85,7 @@ let Tanks = [
         Modelo:"XXX-123",
         Tabela: Table5,
         Type:"ET",
+        CurrentValue:0,
         Capacidade:15000
     },
 ]
@@ -77,6 +93,27 @@ let Tanks = [
 function GetMax(TankId){
     let Tank = Tanks[TankId];
     return Tank["Capacidade"];
+};
+
+function CalculateTotal(){
+    totalGasolina = 0;
+    totalEtanol = 0;
+    totalDisel = 0;
+    Tanks.forEach(tankData => {
+        if(tankData.Type == "GC"){
+            totalGasolina = totalGasolina + Number(tankData.CurrentValue);
+        }else if(tankData.Type == "ET"){
+            totalEtanol = totalEtanol + Number(tankData.CurrentValue);
+            console.log(tankData.CurrentValue);
+        }else if(tankData.Type == "DI"){
+            totalDisel = totalDisel + Number(tankData.CurrentValue);
+        };
+    });
+
+    TotalDiselTexto.innerText = "Total Disel: " + String(totalDisel);
+    TotalEtanolTexto.innerText = "Total Etanol: " + String(totalEtanol);
+    TotalGasolinaTexto.innerText = "Total Gasolina:" + String(totalGasolina);
+    
 };
 
 function Item(element,inputElement,TankId){
@@ -105,12 +142,19 @@ function Item(element,inputElement,TankId){
     childElements[0].innerText = Tanks[TankId].Nome;
 
     input.addEventListener('change', function() {
+
         const numberType = Tanks[TankId].Tabela;
         const N = this.value
+        
+        
         let Result = CalculatePattern(N,numberType,TankId);
         let Liters = Result[0];
+        let percent = Result[1];
+        let RawNumber = Result[2];
+
+        Tanks[TankId]["CurrentValue"] = RawNumber;
+
         if(typeof(Result[0]) === "number"){
-            let percent = Result[1];
             emptySpaceDiv.style = `height:${percent*100}%;`;
             output.innerText = String(Liters) + " LTs";
             outputRemainingSpace.innerText = "Livre:" + String( GetMax(TankId) - Liters) + " LTs";
@@ -175,7 +219,11 @@ ConfirmButton.addEventListener('click',function(ev){
     }else{
         CurrentScreen = 0;
     };
-    updateScreen()
+    totalDisel = 0;
+    totalEtanol = 0;
+    totalGasolina = 0;
+    CalculateTotal();
+    updateScreen();
 });
 
 BackButton.addEventListener('click',function(ev){
@@ -216,14 +264,22 @@ function CalculatePattern(N,numberType,tableId) {
     Table = numberType;
   };
 
+  let Size = Object.keys(Table).length;
+  let RawNumber = Table[N];
+  
+  if(RawNumber == undefined || isNaN(RawNumber || typeof(RawNumber) == "string")){
+    console.log(Table[Size]);
+    RawNumber = Table[Size];
+  }else{console.log(RawNumber)};
+
   if(Table[n] == undefined){
     if(n<=-1){
-        return ["Inválido",0]
+        return ["Inválido",0,RawNumber]
     }else{
         if(Math.floor(n) === n){
-            return ["CHEIO",0]
+            return ["CHEIO",0,RawNumber]
         }else{
-            return ["Números decimais não são suportados",0]
+            return ["Números decimais não são suportados",0,RawNumber]
         }
     }
   }else{
@@ -231,11 +287,6 @@ function CalculatePattern(N,numberType,tableId) {
     if(isNaN(percent)||percent==undefined){
         percent = 0;
     };
-    return [Table[n],percent]
+    return [Table[n],percent,RawNumber]
   }
 };
-
-//for (const element of myElements) {
-   // console.log(element.id);
-   //Item(element);
-//};

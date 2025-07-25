@@ -1,0 +1,212 @@
+    body{
+    display: block;
+    justify-content: normal;
+    align-items: normal;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+    background-size: 10px;
+    background-repeat: repeat;
+    overflow-y: scroll;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .TankItemMainDiv{
+        /*background-color: #b83737;*/
+        
+        border-color: #0000;
+        border-width: 2px;
+        border-radius: 20%;
+        border: solid 2px;
+        width: 100%;
+        height: auto;
+        align-content: center;
+        justify-content: center;
+        display:grid;
+    }
+
+    #TankItemIcon{
+        width: 80px;
+        height: 80px;
+        
+    }
+
+    #TankItemTitle{
+        color: #000000;
+    }
+
+    #TankItemTitle2{
+        color: #000000;
+    }
+    
+.TanksDivScrolling{
+    overflow-y: scroll;
+     overflow-x: hidden;
+     width: 100%;
+    height: 10%;
+}
+
+#TankItemOutput1{
+    cursor: not-allowed;
+}
+
+#ConfirmButtonDiv{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.ConfirmButton{
+    cursor: pointer;
+    background-color: black;
+    color: #f0f0f0;
+    width: 300px;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#ConfirmButtonText{
+    text-align: center;
+    align-self: baseline;
+    font-weight: bold;
+    font-size:large;
+}
+
+#ConfirmButtonImage{
+    float: right;
+    width: auto;
+    height: 100%;
+}
+
+/*-------------------*/
+#ConfirmTruckButtonDiv{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.ConfirmTruckButton{
+    cursor: pointer;
+    /*background-color: black;*/
+    background: none;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    color: #f0f0f0;
+    width: 300px;
+    /*height: 40px;*/
+    height: 70px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#ConfirmTruckButtonText{
+    text-align: center;
+    align-self: baseline;
+    font-weight: bold;
+    font-size:large;
+}
+/*-------------------*/
+
+.TankVizualMain{
+    background-image: linear-gradient(#ff8800,#ff5906);
+    width: 80px;
+    height: 80px;
+    border-color: #0000;
+    border-width: 2px;
+    border-radius: 100%;
+    border: solid 2px;
+    overflow: hidden;
+    display: block;
+}
+
+.TankVizualEmpty{
+    background-color: rgb(255, 255, 255);
+    height: 100%;
+}
+
+.TankVizualTextDiv{
+    position:absolute;
+    display: flex;
+    width: 100%;
+    height: 10px;
+    align-content: center;
+    display: grid;
+    justify-content: center;
+    align-self: center;
+    margin-bottom: 25px;
+}
+
+.TankVizualText{
+    font-weight: bold;
+    font-size:medium;
+    margin: 5px;
+}
+
+.GraphicTankItemMainDiv{
+    align-content: center;
+    justify-content: center;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.TankVizualMainFrame{
+    width: 130px;
+    height: 130px;
+    border-color: #0000;
+    border: solid 2px;
+
+    display:grid;
+    align-content: center;
+    justify-content: center;
+    place-items: center;
+}
+
+.IconeBarril{
+    width: 50px;
+    height: 50px;
+    margin-left: calc(50% - 25px);
+}
+
+.TituloCaminhao1{
+    width: 100%;
+    text-align: center;
+}
+
+.DivCombustivel{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    place-items: center;
+}
+
+.ProductInput{
+    font-weight: bold;
+    font-size: large;
+    height: 50px;
+}
+
+.InputQuantidade{
+    font-weight: bold;
+    font-size: large;
+    height: 50px;
+}
+
+.ConfirmTruckPackageButton{
+
+    cursor: pointer;
+    background-color: black;
+    color: #f0f0f0;
+    width: 300px;
+    height: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}

@@ -1,14 +1,15 @@
 body{
-    display: block;
+    display:flexbox;
     justify-content: normal;
     align-items: normal;
     height: 100vh;
     margin: 0;
     background-color: #ffffff;
-    background-size: 10px;
-    background-repeat: repeat;
     overflow-y: scroll;
     font-family: Arial, Helvetica, sans-serif;
+    background-image: url("../Images/Backgrounds/Gas3.webp");
+    background-repeat:space;
+    background-size:cover;
 }
 
 .Logo{
@@ -22,6 +23,10 @@ body{
 .Logo1{
     align-self: stretch;
     width: 90%;
+    height: 100%;
+}
+
+.MainDiv{
     height: 100%;
 }
 
@@ -56,16 +61,23 @@ body{
 }
 
 .InputArea{
+    position: absolute;
     width: 100%;
-    display:grid;
+    display:block;
     justify-content: center;
     align-content: center;
+    margin-bottom: 0px;
 }
 
 .InputSectionDiv{
-    display: flex;
+    position: absolute;
+    display: block;
+    margin-left: 0%;
+    height: 100px;
+    width: 100%;
     justify-content: center;
     align-content: center;
+    bottom: 200px;
 }
 
 .Icon{
@@ -74,6 +86,13 @@ body{
 
 .Icon1{
     height: 200px;
+}
+
+.PostoInputDiv{
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    width: 200px;
 }
 
 #ConfirmButtonDiv{

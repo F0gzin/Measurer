@@ -241,6 +241,6 @@ const TABLE = {
 240: 9964,
 241: 9987,
 242: 10010,
-243: "CHEIO",
+
 };
 export const Table3 = TABLE;

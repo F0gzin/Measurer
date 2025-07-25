@@ -63,6 +63,16 @@
             </div>
 
         </div>
+
+        <div id="TotalAreaDiv">
+            <h3>TOTAL:</h3>
+            <div id="TotalContentsDiv">
+                <p id="TotalGasolinaTexto">Total Gasolina: ...</p>
+                <p id="TotalEtanolTexto">Total Etanol: ...</p>
+                <p id="TotalDiselTexto">Total Disel: ...</p>
+            </div>
+        </div>
+
         <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
             <button id="BackButton" class="ConfirmButton">
                 <img id="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/2099/2099190.png">
@@ -75,6 +85,7 @@
             </button>
         </div>
     </div>
+
     <div class="TruckMainDiv" id="TruckMainDiv" hidden="true">
         <h1 class="TituloCaminhao1">Produtos</h1>
         <img class="IconeBarril" src="../Assets/Images/Icone.svg">
@@ -84,11 +95,16 @@
             <div class="DivCombustivel">
                 <h2 class="TituloCombustivel">Combustível:</h2>
                 <select class="ProductInput" id="ProductInput">
-                    <option style="background-color: #f99999;" value="gasolina">Gasolina</option>
-                    <option style="background-color: #6ac353;" value="etanol">Etanol</option>
-                    <option style="background-color: #5f5e5e;" value="disel">Disel</option>
+                    <option style="background-color: #f99999; cursor: pointer;" value="gasolina">Gasolina</option>
+                    <option style="background-color: #6ac353; cursor: pointer;" value="etanol">Etanol</option>
+                    <option style="background-color: #5f5e5e; cursor: pointer;" value="disel">Disel</option>
                 </select>
-                <h2 class="TituloQuantidade">Quantidade:</h2> <input class="InputQuantidade" type="number">
+                <h2 class="TituloQuantidade">Quantidade:</h2> <input id="InputQuantidade" class="InputQuantidade" type="number">
+
+                <button id="ConfirmTruckPackageButton" class="ConfirmTruckPackageButton">
+                    <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Confirmar</p>
+                    <img class="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
+                </button>
             </div>
 
         </div>
@@ -96,7 +112,7 @@
 </body>
 
 
-<link id="MainCss" rel="stylesheet" href="../Assets/Styles/pc.css">
+<link id="MainCss" rel="stylesheet" href="../Assets/Styles/main.css">
 
 <script type="text/javascript">
     const js_required_warning = document.getElementById("JS_Required_Warning");
@@ -104,6 +120,6 @@
 </script>
 
 <script type="module" src="../Assets/Scripts/MainTab.js"></script>
-<script type="text/javascript" src="../Assets/Scripts/CONVERT.js"></script>
+<!--<script type="text/javascript" src="../Assets/Scripts/CONVERT.js"></script>
 
 </html>

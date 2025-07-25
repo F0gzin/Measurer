@@ -240,18 +240,6 @@ const TABLE = {
 239: 14936,
 240: 14972,
 241: 15006,
-242: "CHEIO",
-243: "CHEIO",
-244: "CHEIO",
-245: "CHEIO",
-246: "CHEIO",
-247: "CHEIO",
-248: "CHEIO",
-249: "CHEIO",
-250: "CHEIO",
-251: "CHEIO",
-252: "CHEIO",
-253: "CHEIO",
-254: "CHEIO",
+
 };
 export const Table2 = TABLE;
