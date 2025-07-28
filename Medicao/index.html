@@ -65,12 +65,18 @@
         </div>
 
         <div id="TotalAreaDiv">
-            <h3>TOTAL:</h3>
+            <h3 style="text-align: center">ESTOQUE</h3>
             <div id="TotalContentsDiv">
-                <p id="TotalGasolinaTexto">Total Gasolina: ...</p>
-                <p id="TotalEtanolTexto">Total Etanol: ...</p>
-                <p id="TotalDiselTexto">Total Disel: ...</p>
+                <p style="color: aliceblue; background-color: #a43232; cursor: cell; text-align: center; font-size: larger;" id="TotalGasolinaTexto">Total Gasolina: ...</p>
+                <p style="color: aliceblue; background-color: #439c2d; cursor: cell; text-align: center; font-size: larger;" id="TotalEtanolTexto">Total Etanol: ...</p>
+                <p style="color: aliceblue; background-color: #424242; cursor: cell; text-align: center; font-size: larger;" id="TotalDiselTexto">Total Diesel: ...</p>
             </div>
+        </div>
+
+        <div id="ConfirmTruckButtonDiv" class="ConfirmTruckButtonDiv">
+            <button id="ConfirmTruckButton" class="ConfirmTruckButton">
+                <img class="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/6141/6141632.png">
+            </button>
         </div>
 
         <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
@@ -79,11 +85,6 @@
             </button>
         </div>
 
-        <div id="ConfirmTruckButtonDiv" class="ConfirmTruckButtonDiv">
-            <button id="ConfirmTruckButton" class="ConfirmTruckButton">
-                <img class="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/6141/6141632.png">
-            </button>
-        </div>
     </div>
 
     <div class="TruckMainDiv" id="TruckMainDiv" hidden="true">
@@ -97,14 +98,31 @@
                 <select class="ProductInput" id="ProductInput">
                     <option style="background-color: #f99999; cursor: pointer;" value="gasolina">Gasolina</option>
                     <option style="background-color: #6ac353; cursor: pointer;" value="etanol">Etanol</option>
-                    <option style="background-color: #5f5e5e; cursor: pointer;" value="disel">Disel</option>
+                    <option style="background-color: #5f5e5e; cursor: pointer;" value="diesel">Diesel</option>
                 </select>
-                <h2 class="TituloQuantidade">Quantidade:</h2> <input id="InputQuantidade" class="InputQuantidade" type="number">
+                <h2 class="TituloQuantidade">Quantidade:</h2> <input placeholder="10000 LTs" id="InputQuantidade" class="InputQuantidade" type="number">
 
                 <button id="ConfirmTruckPackageButton" class="ConfirmTruckPackageButton">
                     <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Confirmar</p>
                     <img class="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/5974/5974759.png">
                 </button>
+
+                <div>
+                    <p id="PackageFitsText">
+                        ...<br>
+                    </p>
+                </div>
+
+                <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
+                    <button id="BackButton2" class="ConfirmButton">
+                        <h2 style="text-align: center; height: 50%;">Descarregar</h2>
+                    </button>
+                </div>
+
+                <div class="AreaTruckDisplay" id="AreaTruckDisplay">
+
+                </div>
+            
             </div>
 
         </div>
