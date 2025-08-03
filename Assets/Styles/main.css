@@ -211,3 +211,40 @@
     align-content: center;
     justify-content: center;
 }
+
+.FillTankButton{
+    background-color: #000000;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.timer-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+  stroke: #3d3d3d;
+  fill: transparent;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+.progress-ring__circle.active {
+  stroke: #294bd0;
+}
+
+.time-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.3em;
+}

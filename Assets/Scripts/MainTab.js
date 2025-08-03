@@ -11,6 +11,8 @@ const InputDiv = document.getElementById("InputMainDiv");
 const OutputDiv = document.getElementById("OutputMainDiv");
 const TruckDiv = document.getElementById("TruckMainDiv");
 
+const AudioAlarm = document.getElementById("AudioAlarm");
+
 const ConfirmButton = document.getElementById("ConfirmButton");
 const BackButton = document.getElementById("BackButton");
 const BackButton2 = document.getElementById("BackButton2");
@@ -21,11 +23,18 @@ const TotalEtanolTexto = document.getElementById("TotalEtanolTexto");
 const TotalDiselTexto = document.getElementById("TotalDiselTexto");
 const ConfirmTruckButton = document.getElementById("ConfirmTruckPackageButton");
 const PackageFitsText = document.getElementById("PackageFitsText");
+const TimerAreaDiv = document.getElementById("TimerAreaMainDiv");
 
 const PackageInput = document.getElementById("InputQuantidade");
 const PackageTypeInput = document.getElementById("ProductInput");
 
 const TankVisual = document.getElementById("GraphicTankItemMainDiv");
+
+const OverflowWarningImage = document.getElementById("DoesNotFitImg");
+
+const gasolineColor = "rgb(205, 67, 67)";
+const etanolColor = "rgb(44, 183, 102)";
+const dieselColor = "rgb(83, 89, 109)"
 
 let totalGasolina = 0;
 let totalEtanol = 0;
@@ -204,11 +213,11 @@ function Item(element,inputElement,TankId){
     const tankData = Tanks[TankId];
 
     if(tankData["Type"] == "GC"){
-            newElement.style = "background-color: #f99999;"
+            newElement.style = `background-color:${gasolineColor};` //"background-color: #f99999;"
         }else if(tankData["Type"] == "ET"){
-            newElement.style = "background-color: #63b159ff;"
+            newElement.style = `background-color:${etanolColor};` //"background-color: #63b159ff;"
         }else if(tankData["Type"] == "DI"){
-            newElement.style = "background-color: #5d5d5dff;"
+            newElement.style = `background-color:${dieselColor};` //"background-color: #5d5d5dff;"
     }
 
     elementDiv.appendChild(newElement);
@@ -231,8 +240,54 @@ function Clamp(number,min,max){
     return clampedNumber;
 }
 
+let JaEstaAbastecendo = false;
+
+function startTimer(valorDoTanque){
+    TimerAreaDiv.hidden = false;
+    const totalSeconds = valorDoTanque/800*60
+    let remaining = totalSeconds;
+    let interval;
+    const FULL_DASH_ARRAY = 339.292;
+    const circle = document.querySelector(".progress-ring__circle");
+
+    circle.setAttribute("stroke-dasharray", FULL_DASH_ARRAY);
+    circle.setAttribute("stroke-dashoffset", FULL_DASH_ARRAY);
+
+    const timeDisplay = document.getElementById("timeDisplay");
+
+    function formatTime(seconds) {
+        let mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+        let secs = String(Math.floor(seconds) % 60).padStart(2, "0");
+        
+        mins = Clamp(mins,0,10000000);
+        secs = Clamp(secs,0,10000000);
+    
+        return `${mins}:${secs}`;
+    }
+
+    function updateCircle() {
+        const offset = FULL_DASH_ARRAY * (remaining / totalSeconds);
+        circle.setAttribute("stroke-dashoffset", offset);
+    }
+
+    clearInterval(interval);
+    interval = setInterval(() => {
+    if (remaining > 0) {
+      remaining--;
+      timeDisplay.textContent = formatTime(remaining);
+      updateCircle();
+    } else {
+      const audio = new Audio('../Assets/ALARM1.wav')
+      audio.load(); audio.play();
+      JaEstaAbastecendo = false;
+      clearInterval(interval);
+    }
+  }, 1000);
+}
+
 function calculateSpace(AmountOfGasoline,AmountOfEtanol,AmountOfDisel)
 {
+    TimerAreaDiv.hidden = true; 
     let amountOfGasoline = AmountOfGasoline;
     let amountOfEtanol = AmountOfEtanol;
     let amountOfDisel = AmountOfDisel;
@@ -284,10 +339,16 @@ function calculateSpace(AmountOfGasoline,AmountOfEtanol,AmountOfDisel)
         
         i++;
     });
-    PackageFitsText.innerText = PackageFitsText.innerText + "\nNão coube: " + String( Clamp(amountOfGasoline,0,Infinity) ) + "LTs de gasolina\n"
-    PackageFitsText.innerText = PackageFitsText.innerText + "Não coube: " + String( Clamp(amountOfDisel,0,Infinity) ) + "LTs de diesel\n"
-    PackageFitsText.innerText = PackageFitsText.innerText + "Não coube: " + String( Clamp(amountOfEtanol,0,Infinity) ) + "LTs de etanol\n"
+    // PackageFitsText.innerText = PackageFitsText.innerText + "\nNão coube: " + String( Clamp(amountOfGasoline,0,Infinity) ) + "LTs de gasolina\n"
+    // PackageFitsText.innerText = PackageFitsText.innerText + "Não coube: " + String( Clamp(amountOfDisel,0,Infinity) ) + "LTs de diesel\n"
+    // PackageFitsText.innerText = PackageFitsText.innerText + "Não coube: " + String( Clamp(amountOfEtanol,0,Infinity) ) + "LTs de etanol\n"
     
+    let naoCabe = false;
+
+    if(amountOfGasoline > 0 || amountOfEtanol > 0 || amountOfDisel > 0){
+        naoCabe = true;
+    }
+
     UpdateAll()
     
     let displayDiv = document.getElementById("AreaTruckDisplay");
@@ -295,29 +356,54 @@ function calculateSpace(AmountOfGasoline,AmountOfEtanol,AmountOfDisel)
     const kids = displayDiv.children;
 
     Object.keys(kids).forEach(key => {
-        kids[key].remove() // 0x03 0x3F 0xFF 0x00 0x36 
+        kids[key].remove()
     })
 
     let newTankVisual = TankVisual.cloneNode(true);
 
     displayDiv.appendChild(newTankVisual);
     const tankAreaKids = newTankVisual.children;
-    /*  
+
+    OverflowWarningImage.hidden = !naoCabe;
+    displayDiv.hidden = naoCabe;
+    PackageFitsText.hidden = naoCabe;
+      
     Object.keys(tankAreaKids).forEach(key => {
-        tanquesUsados.forEach(index =>{
-        //    console.log(index,tanquesUsados[index],key);
-        
-            if(index != key){
-                console.log(tankAreaKids[key-1]);
-                if(tankAreaKids[key-1]){
-                    tankAreaKids[key-1].remove()
+        let tankObj = tankAreaKids[key];
+        let tankData = Tanks[key];
+        if(tankObj){
+            let tankContent = tankObj.children;    
+            let button = tankContent[4];
+            button.hidden = false;
+            tankObj.style["height"] = "160px";
+            button.addEventListener('click',function(ev){
+                if(JaEstaAbastecendo){return}
+                JaEstaAbastecendo = true;
+                //button.hidden = true;
+                startTimer(tankData.CurrentValue);
+            })
+
+            if(AmountOfGasoline>0){
+                console.log(tankObj.style["backgroundColor"],typeof(tankObj.style["backgroundColor"]));
+                if(tankObj.style["backgroundColor"] != gasolineColor){
+                    tankObj.style["display"] = "none";
                 }
-            }else{
-                console.log(index,key)
+            }else if(AmountOfDisel>0){
+                console.log(tankObj.style["backgroundColor"],typeof(tankObj.style["backgroundColor"]));
+                if(tankObj.style["backgroundColor"] != dieselColor){
+                    tankObj.style["display"] = "none";
+                }
+            }else if(AmountOfEtanol>0){
+                console.log(tankObj.style["backgroundColor"],typeof(tankObj.style["backgroundColor"]));
+                if(tankObj.style["backgroundColor"] != etanolColor){
+                    tankObj.style["display"] = "none";
+                }
             }
-         }) 
+        }else{
+            console.error(`Invalid tankObj -> ${key}`)
+        }
     })
-         */
+    
 };
 
 function setupTanks(){
@@ -333,11 +419,11 @@ function setupTanks(){
         console.log(tankData["Type"]);
         childElements[0].innerText = tankData["Nome"];
         if(tankData["Type"] == "GC"){
-            newElement.style = "background-color: #f99999;"
+            newElement.style = `background-color: ${gasolineColor};`;//"background-color: #f99999;"
         }else if(tankData["Type"] == "ET"){
-            newElement.style = "background-color: #63b159ff;"
+            newElement.style = `background-color: ${etanolColor};`;//"background-color: #63b159ff;"
         }else if(tankData["Type"] == "DI"){
-            newElement.style = "background-color: #5d5d5dff;"
+            newElement.style = `background-color: ${dieselColor};`;//"background-color: #5d5d5dff;"
         }
         childElements[2].innerText = tankData["Type"];
         childElements[3].innerText = "Capacidade: " + tankData["Capacidade"];
@@ -382,12 +468,13 @@ ConfirmButton.addEventListener('click',function(ev){
 
 BackButton.addEventListener('click',function(ev){
     CurrentScreen = 0;
-    updateScreen()
+    updateScreen();
 });
 
 BackButton2.addEventListener('click',function(ev){
     CurrentScreen = 1;
-    updateScreen()
+    updateScreen();
+    window.location.reload();
 });
 
 TruckButton.addEventListener('click',function(ev){

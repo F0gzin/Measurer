@@ -9,6 +9,8 @@
 </head>
 
 <body>
+    <audio id="AudioAlarm" src="../Assets/ALARM1.wav">ALARM</audio>
+
     <h1 class="JS_Required_Warning" id="JS_Required_Warning"><img style="width: 40px;" src="/Assets/Images/Generic/JavaScript.png">JavaScript deve estar ativado para o site funcionar.</h1>
     <div id="InputMainDiv" class="InputMainDiv">     
         <div id="InputMainDiv2">
@@ -60,6 +62,8 @@
                 </div>
                 <p class="TankVizualText">Livre: ...</p> 
                 
+                <button hidden class="FillTankButton" id="FillTankButton">Descarregar</button>
+
             </div>
 
         </div>
@@ -100,7 +104,7 @@
                     <option style="background-color: #6ac353; cursor: pointer;" value="etanol">Etanol</option>
                     <option style="background-color: #5f5e5e; cursor: pointer;" value="diesel">Diesel</option>
                 </select>
-                <h2 class="TituloQuantidade">Quantidade:</h2> <input placeholder="10000 LTs" id="InputQuantidade" class="InputQuantidade" type="number">
+                <h2 class="TituloQuantidade">Quantidade:</h2> <input placeholder="Litros" id="InputQuantidade" class="InputQuantidade" type="number">
 
                 <button id="ConfirmTruckPackageButton" class="ConfirmTruckPackageButton">
                     <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Confirmar</p>
@@ -113,16 +117,33 @@
                     </p>
                 </div>
 
-                <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
+                <img hidden="true" style="width: 100%;" id="DoesNotFitImg" class="DoesNotFitImg" src="../Assets/Images/OverflowWarning.png">
+
+                <br>
+                
+                <div class="AreaTruckDisplay" id="AreaTruckDisplay">                    
+                </div>
+
+                <div hidden class="TimerAreaMainDiv" id="TimerAreaMainDiv">
+                    <div>
+                        <div class="timer-container" style="position: relative;width: 120px;height: 120px;margin: auto;">
+                            <svg class="progress-ring" width="120" height="120" style="transform: rotate(-90deg);">
+                        <circle class="progress-ring__circle" r="54" cx="60" cy="60" style="stroke: #3d3d3d; fill: transparent; stroke-width: 12; stroke-linecap: round; transition: stroke-dashoffset 0.3s linear;" />
+                        </svg>
+                        <div style="position: absolute;top:50%;left: 50%;transform: translate(-50%, -50%);font-size: 1.3em;" class="time-display" id="timeDisplay">Carregando...</div>
+                    </div>
+                    <br><br>
+            
+                </div>
+  
+                </div>
+            
+            <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
                     <button id="BackButton2" class="ConfirmButton">
-                        <h2 style="text-align: center; height: 50%;">Descarregar</h2>
+                        <h2 style="text-align: center; height: 50%;">Voltar</h2>
                     </button>
                 </div>
 
-                <div class="AreaTruckDisplay" id="AreaTruckDisplay">
-
-                </div>
-            
             </div>
 
         </div>

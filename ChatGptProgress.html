@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    <div class="timer-container">
+    <svg class="progress-ring" width="120" height="120">
+        <circle class="progress-ring__circle" r="54" cx="60" cy="60" />
+    </svg>
+    <div class="time-display" id="timeDisplay">00:01:00</div>
+    </div>
+
+    <button id="startBtn">▶</button>
+    <button id="resetBtn">↻</button>
+
+</body>
+
+<style>
+    body {
+  background-color: #2e2e2e;
+  color: white;
+  font-family: sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.timer-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+  stroke: #3d3d3d;
+  fill: transparent;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+.progress-ring__circle.active {
+  stroke: #294bd0;
+}
+
+.time-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.3em;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 10px 15px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+</style>
+
+<script>
+    const FULL_DASH_ARRAY = 339.292; // Circunferência do círculo (2 * π * r)
+const circle = document.querySelector(".progress-ring__circle");
+const timeDisplay = document.getElementById("timeDisplay");
+const startBtn = document.getElementById("startBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+let totalSeconds = 20;
+let remaining = totalSeconds;
+let interval;
+
+circle.setAttribute("stroke-dasharray", FULL_DASH_ARRAY);
+circle.setAttribute("stroke-dashoffset", FULL_DASH_ARRAY);
+circle.classList.add("active");
+
+function formatTime(seconds) {
+  const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const secs = String(seconds % 60).padStart(2, "0");
+  return `00:${mins}:${secs}`;
+}
+
+function updateCircle() {
+  const offset = FULL_DASH_ARRAY * (remaining / totalSeconds);
+  circle.setAttribute("stroke-dashoffset", offset);
+}
+
+function startTimer() {
+  clearInterval(interval);
+  interval = setInterval(() => {
+    if (remaining > 0) {
+      remaining--;
+      timeDisplay.textContent = formatTime(remaining);
+      updateCircle();
+    } else {
+      clearInterval(interval);
+    }
+  }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(interval);
+  remaining = totalSeconds;
+  timeDisplay.textContent = formatTime(remaining);
+  circle.setAttribute("stroke-dashoffset", FULL_DASH_ARRAY);
+}
+
+startBtn.addEventListener("click", startTimer);
+resetBtn.addEventListener("click", resetTimer);
+
+// Inicializa
+timeDisplay.textContent = formatTime(remaining);
+updateCircle();
+
+</script>
+
+</html>
