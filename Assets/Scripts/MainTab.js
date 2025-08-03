@@ -380,7 +380,7 @@ function calculateSpace(AmountOfGasoline,AmountOfEtanol,AmountOfDisel)
                 if(JaEstaAbastecendo){return}
                 JaEstaAbastecendo = true;
                 //button.hidden = true;
-                startTimer(tankData.CurrentValue);
+                startTimer(AmountOfGasoline+AmountOfDisel+AmountOfEtanol);
             })
 
             if(AmountOfGasoline>0){
