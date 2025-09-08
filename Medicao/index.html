@@ -71,21 +71,30 @@
         <div id="TotalAreaDiv">
             <h3 style="text-align: center">ESTOQUE RODO SALTO</h3>
             <div id="TotalContentsDiv">
-                <p style="color: aliceblue; background-color: #439c2d; cursor: cell; text-align: center; font-size: larger;" id="TotalEtanolTexto">Total Etanol: ...</p>
                 <p style="color: aliceblue; background-color: #a43232; cursor: cell; text-align: center; font-size: larger;" id="TotalGasolinaTexto">Total Gasolina: ...</p>
+                <p style="color: aliceblue; background-color: #439c2d; cursor: cell; text-align: center; font-size: larger;" id="TotalEtanolTexto">Total Etanol: ...</p>
                 <p style="color: aliceblue; background-color: #424242; cursor: cell; text-align: center; font-size: larger;" id="TotalDiselTexto">Total Diesel: ...</p>
             </div>
         </div>
 
         <div id="ConfirmTruckButtonDiv" class="ConfirmTruckButtonDiv">
-            <button id="ConfirmTruckButton" class="ConfirmTruckButton">
+            <button id="ConfirmTruckButton" class="ConfirmButton">
+                <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Descarga</p>
                 <img class="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/6141/6141632.png">
             </button>
         </div>
-
+        <br>
         <div id="ConfirmButtonDiv" class="ConfirmButtonDiv">
             <button id="BackButton" class="ConfirmButton">
+                <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Voltar</p>
                 <img id="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/2099/2099190.png">
+            </button>
+        </div>
+        <br>
+        <div  id="ConfirmButtonDiv" class="ConfirmButtonDiv">
+            <button id="GoToAnaliseButton" class="ConfirmButton">
+                <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Analise</p>
+                <img class="ConfirmButtonImage" src="../Assets/Images/Generic/WhiteLab.png">
             </button>
         </div>
 
@@ -115,7 +124,7 @@
                     <p id="PackageFitsText">
                         ...<br>
                     </p>
-                </div>
+                </div>      
 
                 <img hidden="true" style="width: 100%;" id="DoesNotFitImg" class="DoesNotFitImg" src="../Assets/Images/OverflowWarning.png">
 
@@ -148,6 +157,47 @@
 
         </div>
     </div>
+
+    <div class="AnaliseMainDiv" id="AnaliseMainDiv" hidden>
+        <div>
+            <div style="display: flex;">
+                <h4>Tipo de Combustível: </h4>
+                <select class="AnaliseProductInput" id="AnaliseProductInput">
+                    <option style="background-color: #f99999; cursor: pointer;" value="gasolina">Gasolina</option>
+                    <option style="background-color: #6ac353; cursor: pointer;" value="etanol">Etanol</option>
+                    <option style="background-color: #5f5e5e; cursor: pointer;" value="diesel">Diesel</option>
+                </select>
+            </div>
+            <div id="AnalisePHInputArea" style="display: flex;">
+                <h4>pH (Etanol) ou % de Etanol (Gasolina): </h4>
+                <input id="AnalisePHInput" type="number">
+            </div>
+            <div style="display: flex;">
+                <h4>Temperatura (°C): </h4>
+                <input id="AnaliseTemperatureInput" type="number">
+            </div>
+            <div style="display: flex;">
+                <h4>Densidade (g/cm³): </h4>
+                <input id="AnaliseDensityInput" type="number">
+            </div>
+        </div>
+        <br>
+        <div>
+            <button id="ConfirmAnaliseButton" class="ConfirmButton">
+                <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Analisar</p>
+                <img id="ConfirmButtonImage" src="../Assets/Images/Generic/MagnifyingGlass.png">
+            </button>
+        </div>
+        <div id="AnaliseOutputText" class="AnaliseOutputText">...</div>
+        <br>
+        <div>
+            <button id="BackButton3" class="ConfirmButton">
+                <p style="position: relative; margin-bottom: 20px;font-size: medium; font-weight: bold;">Voltar</p>
+                <img id="ConfirmButtonImage" src="https://cdn-icons-png.flaticon.com/512/2099/2099190.png">
+            </button>
+        </div>
+
+    </div>      
 </body>
 
 
@@ -159,7 +209,4 @@
 </script>
 
 <script type="module" src="../Assets/Scripts/MainTab.js"></script>
-<!--<script type="text/javascript" src="../Assets/Scripts/CONVERT.js"></script>
-
-
-</html>
+<!--<script type="text/javascript" src="../Assets/Scripts/CONVERT.js"></script> </html> -->
