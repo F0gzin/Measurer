@@ -6,6 +6,13 @@ import { Table3 } from './Tables3.js'; // tanques 5
 import { Table4 } from './Tables4.js'; // tanques 6
 import { Table5 } from './Tables5.js'; // tanques 7 e 8
 
+const Translations = {
+    "gasoline":"Gasolina",
+    "gasolina":"Gasolina",
+    "etanol":"Etanol",
+    "diesel":"Diesel",
+}
+
 let CurrentScreen = 0; // tela atual
 const InputDiv = document.getElementById("InputMainDiv");
 const OutputDiv = document.getElementById("OutputMainDiv");
@@ -204,6 +211,7 @@ function UpdateAll(){
         Update(kids[key],key,Tanks[key]["CurrentValue"]);
     });
 }
+
 function Item(element,inputElement,TankId){
     const elementPreviewTemplate = document.getElementById("TankVizualMainFrame");
     const elementChildren = element.children;
@@ -492,7 +500,7 @@ BackButton3.addEventListener('click',function(ev){
 });
 
 TruckButton.addEventListener('click',function(ev){
-    CurrentScreen = 3;
+    CurrentScreen = 2;
     updateScreen()
 });
 
@@ -532,6 +540,9 @@ ConfirmAnaliseButton.addEventListener('click',function(ev){
     if(! (isNaN(temp)||isNaN(dens))){
         let teor = '...';
         const ref=densRef[type][temp];
+        console.log(type);
+        let TipoTraduzido = Translations[type];
+        if(!TipoTraduzido){TipoTraduzido="?[COMBUSTÍVEL]?"}
         if(ref==undefined){
             //window.alert(`⚠️Referencias para a temperatura ${temp}°C não foram encontradas⚠️`);
             teor = `<span style="color:#E53E3E";>✖ Fora da medida</span>`;
@@ -540,7 +551,9 @@ ConfirmAnaliseButton.addEventListener('click',function(ev){
         }
         let ok = (dens >= ref.min && dens <= ref.max);
 
-        if (type === 'etanol') {
+        let etanolOrPhText = "pH";
+
+        if (type == 'etanol') {
             if(isNaN(ph)){
                 window.alert("⚠️Por favor, insira um valor válido de pH⚠️");
                 return
@@ -1520,16 +1533,41 @@ ConfirmAnaliseButton.addEventListener('click',function(ev){
                 const maxTeor = 95.00;
                 const valid = teorNum >= minTeor && teorNum <= maxTeor;
 
-                teor = `${teorValue} % m/m <span style="color:${valid ? '#10B981' : '#E53E3E'};">(${valid ? '✔ Ok!' : '✖ Fora da medida'})</span>`;
+                teor = `${teorValue} % °INPM <span style="color:${valid ? '#269f16ff' : '#E53E3E'};">(${valid ? '✔ Conforme!' : '✖ Fora da medida'})</span>`;
                 ok = ok && valid;
             } else {
                 //window.alert(`⚠️Não foram encontrados dados para a temperatura ${tempStr}°C e densidade ${densStr}(g/cm³)⚠️`);
                 teor = `<span style="color:#E53E3E";>✖ Fora da medida</span>`;
                 ok = false;
             }
-            textOutputAnalise.innerHTML = teor
+
+            textOutputAnalise.innerHTML = teor;
         }else{
-            teor = `<span style="color:${ok ? '#10B981' : '#E53E3E'};">(${ok ? '✔ Ok!' : '✖ Fora da medida'})</span>`;
+            if(type == 'gasolina'){
+                etanolOrPhText = "Etanol";
+                if(ph>31 || ph<29){
+                    ok = false;
+                }
+            }
+            teor = `<span style="color:${ok ? '#269f16ff' : '#E53E3E'};">(${ok ? '✔ Conforme!' : '✖ Fora da medida'})</span>`;
+        }
+        teor = teor + `<h4>Dados Informados:</h4>
+        <p>Tipo: ${TipoTraduzido}</p>
+        <p>Temperatura: ${temp}°C</p>
+        <p>Densidade: ${dens}g/cm³</p>    
+        `
+
+        if(type!="etanol"){
+            teor = teor + `<p>%${etanolOrPhText}: ${ph}%</p>`
+        }
+
+        teor = teor + `<br><h4>Referência ANP:</h4>
+        <p>Temp Referencia: ${temp}°C</p>
+        <p>Densidade Min: ${ref.min}</p>
+        <p>Densidade Max: ${ref.max}</p>`
+
+        if(type=="gasolina"){
+            teor = teor + `<p>%Etanol: 29-31%</p>`
         }
         textOutputAnalise.innerHTML = teor
     }else{
@@ -1573,8 +1611,6 @@ function CalculatePattern(N,numberType,tableId) {
     console.log(Table[Size]);
     RawNumber = Table[Size];
   }else{console.log(RawNumber)};
-
-  
 
   if(Table[n] == undefined){
     if(n<=-1){
